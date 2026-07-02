@@ -1,0 +1,381 @@
+:root{
+  --wine-deep:#5c1a2e;
+  --wine-mid:#8f2a45;
+  --wine-soft:#b83b5e;
+  --blush:#ffd3da;
+  --rose-gold:#f0a8ae;
+  --gold:#f2c069;
+  --cream:#fff9f5;
+  --paper:#fff9f5;
+  --ink:#4a1f27;
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:linear-gradient(180deg,var(--wine-deep) 0%, var(--wine-mid) 45%, var(--wine-deep) 100%);
+  color:var(--cream);
+  font-family:'Jost',sans-serif;
+  font-weight:300;
+  overflow-x:hidden;
+  position:relative;
+}
+
+/* Typography scale + improved readability */
+html{
+  font-size:16px;
+}
+body{ line-height:1.45; }
+h1{ font-size:clamp(2.4rem,6vw,4.4rem); }
+h2{ font-size:clamp(1.6rem,4.5vw,2.8rem); }
+p,li{ font-size:clamp(1rem,1.6vw,1.12rem); }
+
+/* Subtle entrance animations */
+.fade-in{ animation:fadeIn .7s ease both; }
+@keyframes fadeIn{ from{ opacity:0; transform:translateY(6px);} to{ opacity:1; transform:none;} }
+
+/* Responsive spacing tweaks */
+@media (max-width:640px){
+  section{ padding:8vw 5vw; }
+  .postcards{ gap:32px; }
+  .gallery-grid{ grid-template-columns:repeat(2,1fr); }
+}
+
+/* ---------- Ambient floating hearts ---------- */
+#heart-field{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:1;
+}
+
+/* ---------- Layout helpers ---------- */
+section{
+  position:relative;
+  z-index:2;
+  padding:min(14vw,140px) 6vw;
+  max-width:1100px;
+  margin:0 auto;
+}
+.eyebrow{
+  font-family:'Dancing Script',cursive;
+  color:var(--gold);
+  font-size:clamp(1.4rem,3vw,1.9rem);
+  letter-spacing:0.02em;
+  margin:0 0 6px 0;
+  display:block;
+}
+h1,h2,h3{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:500;
+  margin:0;
+  color:var(--cream);
+}
+.rule{
+  width:64px;
+  height:1px;
+  background:var(--rose-gold);
+  margin:28px auto;
+  opacity:.7;
+}
+
+/* ---------- Hero ---------- */
+#hero{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding-top:0;
+}
+.wax-seal{
+  width:74px;height:74px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%, var(--gold), var(--wine-soft) 70%);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 6px 18px rgba(0,0,0,.35), inset 0 0 0 2px rgba(255,249,245,.2);
+  margin-bottom:28px;
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:1.4rem;
+  color:var(--wine-deep);
+  animation:seal-in 1.2s ease-out;
+}
+@keyframes seal-in{
+  from{transform:scale(0) rotate(-30deg);opacity:0;}
+  to{transform:scale(1) rotate(0);opacity:1;}
+}
+#hero h1{
+  font-size:clamp(2.6rem,7vw,5rem);
+  line-height:1.05;
+  font-style:italic;
+  max-width:14ch;
+}
+#hero p.sub{
+  margin-top:20px;
+  font-size:clamp(1rem,1.6vw,1.15rem);
+  color:var(--blush);
+  letter-spacing:.04em;
+  max-width:40ch;
+}
+.scroll-cue{
+  margin-top:64px;
+  font-size:.75rem;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  color:var(--gold);
+  opacity:.9;
+  animation:bob 2.4s ease-in-out infinite;
+}
+@keyframes bob{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(8px);}
+}
+
+/* ---------- Section titles ---------- */
+.section-head{ text-align:center; margin-bottom:60px; }
+.section-head h2{ font-size:clamp(2rem,4.5vw,3rem); font-style:italic; }
+
+/* Postcard hover/entrance polish */
+.postcard{ transition:transform .45s cubic-bezier(.2,.9,.2,1), box-shadow .35s ease; }
+.postcard:hover{ transform:translateY(-8px) rotate(0); box-shadow:0 30px 60px -24px rgba(0,0,0,.5); }
+
+/* ---------- Postcards (love notes) ---------- */
+.postcards{
+  display:flex;
+  flex-direction:column;
+  gap:56px;
+}
+.postcard{
+  position:relative;
+  background:var(--paper);
+  color:var(--ink);
+  border-radius:2px;
+  padding:38px 40px 34px;
+  max-width:560px;
+  box-shadow:0 20px 40px -12px rgba(0,0,0,.45);
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.05rem,1.6vw,1.25rem);
+  line-height:1.65;
+  font-style:italic;
+}
+.postcard:nth-child(odd){ align-self:flex-start; transform:rotate(-1.4deg); }
+.postcard:nth-child(even){ align-self:flex-end; transform:rotate(1.6deg); }
+.postcard .tape{
+  position:absolute; top:-14px; left:50%; transform:translateX(-50%) rotate(-3deg);
+  width:90px; height:26px;
+  background:rgba(242,192,105,.6);
+  border:1px solid rgba(255,255,255,.4);
+  box-shadow:0 2px 6px rgba(0,0,0,.2);
+}
+.postcard .stamp{
+  position:absolute; top:20px; right:22px;
+  width:46px; height:56px;
+  border:2px dashed var(--wine-soft);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Jost',sans-serif;
+  font-size:.65rem;
+  color:var(--wine-soft);
+  letter-spacing:.05em;
+  text-align:center;
+  transform:rotate(4deg);
+}
+.postcard .no{
+  font-family:'Jost',sans-serif;
+  font-style:normal;
+  font-size:.7rem;
+  letter-spacing:.25em;
+  text-transform:uppercase;
+  color:var(--wine-soft);
+  display:block;
+  margin-bottom:14px;
+}
+.postcard p{ margin:0; }
+.final-line{
+  text-align:center;
+  margin-top:20px;
+  font-family:'Dancing Script',cursive;
+  font-size:clamp(2rem,5vw,3rem);
+  color:var(--gold);
+}
+
+/* ---------- Ten reasons ---------- */
+.reasons-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:22px;
+}
+.reason-card{
+  background:rgba(255,249,245,.09);
+  border:1px solid rgba(242,192,105,.4);
+  border-radius:4px;
+  padding:26px 22px;
+  position:relative;
+  transition:transform .35s ease, background .35s ease;
+}
+.reason-card:hover{
+  transform:translateY(-6px);
+  background:rgba(255,249,245,.15);
+}
+.reason-card .num{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:2.1rem;
+  color:var(--gold);
+  display:block;
+  margin-bottom:10px;
+}
+.reason-card p{
+  margin:0;
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.15rem;
+  color:var(--cream);
+  line-height:1.4;
+}
+
+/* ---------- Gallery ---------- */
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+}
+.gallery-grid .tile{
+  aspect-ratio:1/1.1;
+  border-radius:3px;
+  overflow:hidden;
+  position:relative;
+  background:linear-gradient(160deg,var(--wine-soft),var(--wine-deep));
+  display:flex;align-items:center;justify-content:center;
+  border:1px solid rgba(242,192,105,.35);
+}
+.gallery-grid .tile img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform .5s ease;
+}
+.gallery-grid .tile:hover img{ transform:scale(1.06); }
+
+/* Lightbox styles */
+.lightbox-overlay{
+  position:fixed;inset:0;background:rgba(10,6,8,0.82);display:flex;align-items:center;justify-content:center;z-index:9999;
+}
+.lightbox-frame{ max-width:92vw; max-height:86vh; display:flex;flex-direction:column; align-items:center; gap:12px; }
+.lightbox-image{ max-width:100%; max-height:78vh; border-radius:6px; box-shadow:0 30px 60px rgba(0,0,0,.6); }
+.lightbox-caption{ color:var(--blush); font-family:'Dancing Script',cursive; font-size:1.1rem; }
+.lightbox-close, .lightbox-nav{ background:rgba(255,255,255,0.06); border:0; color:var(--cream); padding:8px 10px; border-radius:6px; cursor:pointer; }
+.lightbox-controls{ display:flex; gap:12px; align-items:center; }
+
+/* Video play overlay */
+.video-card{ position:relative; }
+.video-play-overlay{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; pointer-events:none; }
+.video-play-overlay button{ pointer-events:auto; background:rgba(255,255,255,0.08); border-radius:50%; width:64px; height:64px; border:0; color:var(--cream); font-size:1.6rem; display:flex; align-items:center; justify-content:center; }
+
+/* Accessibility helpers */
+.visually-hidden{ position:absolute !important; height:1px; width:1px; overflow:hidden; clip:rect(1px,1px,1px,1px); white-space:nowrap; }
+.placeholder-label{
+  font-family:'Jost',sans-serif;
+  font-size:.75rem;
+  letter-spacing:.08em;
+  color:var(--blush);
+  text-align:center;
+  padding:0 10px;
+}
+@media (max-width:640px){ .gallery-grid{ grid-template-columns:repeat(2,1fr);} }
+
+/* ---------- Videos ---------- */
+.video-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:24px;
+}
+@media (max-width:640px){ .video-grid{ grid-template-columns:1fr; } }
+.video-card{
+  background:rgba(0,0,0,.2);
+  border:1px solid rgba(242,192,105,.4);
+  border-radius:6px;
+  overflow:hidden;
+}
+.video-card video{ width:100%; display:block; aspect-ratio:16/10; background:#3a0f1c; }
+.video-card .caption{
+  padding:16px 18px;
+  font-family:'Dancing Script',cursive;
+  font-size:1.4rem;
+  color:var(--blush);
+}
+.add-more-note{
+  margin-top:22px;
+  text-align:center;
+  font-size:.85rem;
+  color:var(--blush);
+  opacity:.75;
+}
+
+/* ---------- Music ---------- */
+.music-wrap{
+  text-align:center;
+}
+.vinyl{
+  width:120px;height:120px;border-radius:50%;
+  margin:0 auto 30px;
+  background:
+    radial-gradient(circle at center, var(--cream) 0 8%, var(--wine-deep) 9% 11%, #1a0a10 12%);
+  box-shadow:0 10px 30px rgba(0,0,0,.45);
+  animation:spin 6s linear infinite;
+}
+@keyframes spin{ to{ transform:rotate(360deg);} }
+.spotify-embed{
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 20px 50px -15px rgba(0,0,0,.55);
+}
+
+/* ---------- Footer ---------- */
+footer{
+  text-align:center;
+  padding:100px 6vw 80px;
+  position:relative;
+  z-index:2;
+}
+footer .signature{
+  font-family:'Dancing Script',cursive;
+  font-size:clamp(2.2rem,6vw,3.4rem);
+  color:var(--gold);
+}
+footer .small{
+  margin-top:14px;
+  font-size:.8rem;
+  letter-spacing:.1em;
+  color:var(--blush);
+  opacity:.75;
+}
+
+::selection{ background:var(--gold); color:var(--wine-deep); }
+
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+  .scroll-cue, .vinyl, .wax-seal{animation:none;}
+}
+
+/* Hide Next.js / Vercel dev badges or injected corner UI (non-invasive) */
+/* If you still see the button, tell me which corner and I'll inspect further. */
+/* Targets injected dev overlays, badges, and external links. */
+#__next_dev_overlay__,
+.next-dev-overlay,
+.nextjs-badge,
+.vercel-badge,
+.vercel-analytics,
+a[href*="nextjs.org"],
+a[href*="vercel.com"] {
+  display: none !important;
+  pointer-events: none !important;
+}
+
+/* Catch-all for small fixed-position badges */
+body :where(a,div,img){
+  --_pos: initial;
+}
+body :where(a,div,img)[style*="position:fixed"],
+body :where(a,div,img)[style*="position: absolute"] {
+  /* only hide tiny corner elements likely to be badges */
+  max-width: 140px !important;
+}
