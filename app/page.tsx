@@ -45,6 +45,10 @@ const reasons = [
 // Add or remove entries here — each needs a file in /public/assets
 const photos = [
   "picture1.jpeg",
+  "IMG-20260703-WA0009.jpg",
+  "IMG-20260703-WA0005.jpg"
+  "IMG-20260703-WA0007.jpg"
+  "IMG-20260703-WA00010.jpg",
 ];
 
 // Add or remove entries here too — each needs a video file in /public/assets
